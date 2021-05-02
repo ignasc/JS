@@ -1,0 +1,30 @@
+function sumAll(arr) {
+
+
+  let tempArray = [];
+  tempArray = arr.map(x => x);
+  tempArray = tempArray.sort((a, b) => {
+    if(a === b) {
+      return 0;
+    } else if (a < b) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+
+  let suma = 0;
+  for (let i = tempArray[0]; i <= tempArray[1]; i++){
+    suma += i; //Cia teoriskai galima panaudoti recursive
+  }
+
+  return suma;
+
+
+
+
+
+  //console.log(tempArray);
+}
+
+sumAll([1, 4]);

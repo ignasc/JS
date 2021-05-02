@@ -1,0 +1,129 @@
+Convert the given number into a roman numeral.
+
+All roman numerals answers should be provided in upper-case.
+
+
+-------------------------------------------
+convertToRoman(2) should return the string II.
+
+convertToRoman(3) should return the string III.
+
+convertToRoman(4) should return the string IV.
+
+convertToRoman(5) should return the string V.
+
+convertToRoman(9) should return the string IX.
+
+convertToRoman(12) should return the string XII.
+
+convertToRoman(16) should return the string XVI.
+
+convertToRoman(29) should return the string XXIX.
+
+convertToRoman(44) should return the string XLIV.
+
+convertToRoman(45) should return the string XLV.
+
+convertToRoman(68) should return the string LXVIII
+
+convertToRoman(83) should return the string LXXXIII
+
+convertToRoman(97) should return the string XCVII
+
+convertToRoman(99) should return the string XCIX
+
+convertToRoman(400) should return the string CD
+
+convertToRoman(500) should return the string D
+
+convertToRoman(501) should return the string DI
+
+convertToRoman(649) should return the string DCXLIX
+
+convertToRoman(798) should return the string DCCXCVIII
+
+convertToRoman(891) should return the string DCCCXCI
+
+convertToRoman(1000) should return the string M
+
+convertToRoman(1004) should return the string MIV
+
+convertToRoman(1006) should return the string MVI
+
+convertToRoman(1023) should return the string MXXIII
+
+convertToRoman(2014) should return the string MMXIV
+
+convertToRoman(3999) should return the string MMMCMXCIX
+
+------------------------------------------
+function convertToRoman(num) {
+  
+  /* Romeniski skaiciai ir ju atitikmenys:
+    "I": 1,
+    "V": 5,
+    "X": 10,
+    "L": 50,
+    "C": 100,
+    "D": 500,
+    "M": 1000
+  */
+
+  let romeniskiSkaitmenys = [
+    ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"],//Vienetai
+    ["X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"],//Desimtys
+    ["C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"] //Simtai
+  ]
+
+  let isskaidytasSkaicius = [];
+  let daugiklis = 1;
+  let daugikliai = [];
+
+  //Issiskaidom skaiciu i atskirus ir issaugom ju daugiklius atitinkamai
+  while(num != 0){
+
+    if(num%10 != 0){//Tikrinam, jeigu nulis, tai praleidziam, nes nera to daugiklio skaitmens
+    //pvz 400%10 bus 0, vadinasi vienetu nera ir didinam daugikli neivesdami skaiciaus
+    //pvz 401%10 bus 1, vadinasi vienetai egzistuoja ir issaugom skaitmeni su atitinkamu daugukliu (siuo atveju 1)
+      isskaidytasSkaicius.unshift(num%10);
+      daugikliai.unshift(daugiklis);
+    }
+
+    num = parseInt(num/10);//Naikinam pirma nuo galo skaitmeni, kuri ka tik patikrinome
+    daugiklis *= 10;//Didinam daugikli
+  }
+
+
+  //--------------------------------------------
+  //konvertuojam kiekviena skaiciu i romeniska
+  function konverteris(skaicius, daugiklis){
+    let romeniskasSkaicius = "";//skaicius, kuri grazinsime
+    //tikrinam, ar dirbam su tukstanciais
+    if(daugiklis == 1000){
+      for(let i = 1; i <= skaicius; i++){
+        romeniskasSkaicius += "M";
+      }
+      return romeniskasSkaicius;
+    }
+
+    //Konvertuojam skaiciu i romeniska
+    romeniskasSkaicius += romeniskiSkaitmenys[daugiklis.toString().length-1][skaicius-1];
+    /*is masyvo romeniskiSkaitmenys pasiimam atitinkama romeniska skaiciu. Sitas masyvas turi tris masyvus savyje: pirmas masyvas [0] yra vienetai, antrasis [1] yra desimtys ir trecias [2] yra simtai. Atitinkamai 1.length-1=0, 10/length-1=1, 100.length-1=2. Kai pasirenkame, is kurio masyvo imti skaitmenis, antras indeksas nurodo tame masyve esanti romeniska skaiciu, pvz skaicius 30: 10.length-1=1, taigi imame is antrojo (desimciu) masyvo [3-1]'aji elementa, kuris yra XXX*/
+
+    return romeniskasSkaicius;
+  }
+  //--------------------------------------------
+
+
+    //Galutinis romeniskas skaicius
+    /*Einam per isskaidyto skaiciaus masyva ir atitinkamai sugeneruojam pilna romeniska skaitmeni */
+    let galutinisSkaicius = "";
+    for (let i = 0; i < isskaidytasSkaicius.length; i++){
+      galutinisSkaicius += konverteris(isskaidytasSkaicius[i], daugikliai[i]);
+    }
+
+  
+ return galutinisSkaicius;
+}
+
+convertToRoman(36);

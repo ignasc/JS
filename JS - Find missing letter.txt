@@ -1,0 +1,42 @@
+Find the missing letter in the passed letter range and return it.
+
+If all letters are present in the range, return undefined.
+
+
+-------------------------------------------
+fearNotLetter("abce") should return the string d.
+Passed
+
+fearNotLetter("abcdefghjklmno") should return the string i.
+Passed
+
+fearNotLetter("stvwx") should return the string u.
+Passed
+
+fearNotLetter("bcdf") should return the string e.
+Passed
+
+fearNotLetter("abcdefghijklmnopqrstuvwxyz") should return undefined.
+
+------------------------------------------
+function fearNotLetter(str) {
+  let abecele = "abcdefghijklmnopqrstuvwxyz";
+  let string = str.toLowerCase();
+  let startingIndex = 0;
+
+  startingIndex = abecele.indexOf(string[0]);
+
+  for(let i = 1; i < string.length; i++){
+
+    if(abecele[i + startingIndex] === string[i]){
+      continue;
+    } else {
+      return abecele[i + startingIndex];
+    }
+
+  }
+
+  return undefined;
+}
+
+fearNotLetter("abcdefghjklmno");

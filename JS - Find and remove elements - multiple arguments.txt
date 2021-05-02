@@ -1,0 +1,26 @@
+function destroyer(arr) {
+let tempArray = [];
+for (let j = 0; j < arguments[0].length; j++){
+  tempArray.push(arguments[0][j]);
+  }
+
+//Cia i destroyer funkcija priduoda masyva ir viena ar daugiau argumentu, kuriuos reikia trinti lauk
+//kintamasis "arguments" leidzia loopinti per visus priduotus argumentus i funkcija
+let indeksas;
+
+for (let i = 1; i <= arguments.length; i++){
+
+    do{
+      indeksas = tempArray.indexOf(arguments[i]);
+      if(indeksas!=-1){
+        tempArray.splice(indeksas,1);
+      }
+
+    }while(indeksas != -1);
+
+  }
+
+  return tempArray;
+}
+
+destroyer([1, 2, 3, 1, 2, 3], 2, 3);

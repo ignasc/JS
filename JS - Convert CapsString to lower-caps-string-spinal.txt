@@ -1,0 +1,61 @@
+Convert a string to spinal case. Spinal case is all-lowercase-words-joined-by-dashes.
+
+-------------------------------------------
+spinalCase("This Is Spinal Tap") should return the string this-is-spinal-tap.
+Passed
+
+spinalCase("thisIsSpinalTap") should return the string this-is-spinal-tap.
+Passed
+
+spinalCase("The_Andy_Griffith_Show") should return the string the-andy-griffith-show.
+Passed
+
+spinalCase("Teletubbies say Eh-oh") should return the string teletubbies-say-eh-oh.
+Passed
+
+spinalCase("AllThe-small Things") should return the string all-the-small-things.
+
+
+
+------------------------------------------
+function spinalCase(str) {
+
+  let tempString = "";//Sudelioti bruksnelius kur tarpai ar kiti simboliai
+  let finalString = "";//Sudelioti bruksnelius tarp mazos ir didziosios raides, kai nera simbolio
+
+
+  //Pradinis simbolis pridedamas is karto
+  tempString += str[0].toLowerCase();
+
+  for (let i = 1; i < str.length; i++){
+
+    //pirma sudeliojam bruksnelius vietoj kitu simboliu
+    if(/[\W_.-]/.test(str[i])){
+      tempString += "-";
+      continue;
+    }
+    tempString += str[i];
+  }
+
+  //Iterpiam bruksnelius, kur ju nebuvo pries didziaja raide
+  finalString += tempString[0];//Is karto pridedam pirma simboli
+  for (let i = 1; i < tempString.length; i++){
+    if(/\W/.test(tempString[i])){
+      finalString += tempString[i];
+      continue;
+    } else if(/[A-Z]/.test(tempString[i]) && /[a-z]/.test(tempString[i-1])){
+      finalString += "-";
+      finalString += tempString[i];
+      continue;
+    } else {
+      finalString += tempString[i];
+    }
+  }
+
+  //Konvertuojam visas raides i lowercase
+  str = finalString.toLowerCase();
+
+  return str;
+}
+
+spinalCase('This Is Spinal Tap');

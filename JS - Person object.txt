@@ -1,0 +1,88 @@
+Fill in the object constructor with the following methods below:
+
+getFirstName()
+getLastName()
+getFullName()
+setFirstName(first)
+setLastName(last)
+setFullName(firstAndLast)
+
+Run the tests to see the expected output for each method. The methods that take an argument must accept only one argument and it has to be a string. These methods must be the only available means of interacting with the object.
+
+
+-------------------------------------------
+Object.keys(bob).length should return 6.
+Passed
+
+bob instanceof Person should return true.
+Passed
+
+bob.firstName should return undefined.
+Passed
+
+bob.lastName should return undefined.
+Passed
+
+bob.getFirstName() should return the string Bob.
+Passed
+
+bob.getLastName() should return the string Ross.
+Passed
+
+bob.getFullName() should return the string Bob Ross.
+Passed
+
+bob.getFullName() should return the string Haskell Ross after bob.setFirstName("Haskell").
+Passed
+
+bob.getFullName() should return the string Haskell Curry after bob.setLastName("Curry").
+Passed
+
+bob.getFullName() should return the string Haskell Curry after bob.setFullName("Haskell Curry").
+Passed
+
+bob.getFirstName() should return the string Haskell after bob.setFullName("Haskell Curry").
+Passed
+
+bob.getLastName() should return the string Curry after bob.setFullName("Haskell Curry").
+
+------------------------------------------
+var Person = function(firstAndLast) {
+  // Only change code below this line
+
+  //when this. is not used, then it will not count as key towards "Object.keys(bob).length should return 6."
+  let _tempArray = firstAndLast.split(" ");
+  let _vardas = _tempArray[0];
+  let _pavarde = _tempArray[1];
+
+  //Get first name
+  this.getFirstName = function(){
+    return _vardas;
+  }
+  //Get last name
+  this.getLastName = function() {
+    return _pavarde;
+  }
+  //Get a full name
+  this.getFullName = function() {
+    return _vardas + " " + _pavarde;
+  }
+  //Set first name
+  this.setFirstName = function(vardas) {
+    _vardas = vardas;
+  }
+  //Set last name
+  this.setLastName = function(pavarde) {
+    _pavarde = pavarde;
+  }
+  //Set full name
+  this.setFullName = function(fullName){
+    _tempArray = fullName.split(" ");
+    _vardas = _tempArray[0];
+    _pavarde = _tempArray[1];
+  }
+  
+};
+
+var bob = new Person('Bob Ross');
+bob.getFullName();
