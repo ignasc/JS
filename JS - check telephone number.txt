@@ -83,7 +83,7 @@ function telephoneCheck(str) {
   /*
   Truputis aprasymo, kad nepasimesti:
   fullFilterCoutryCode = /pradzia, 1, tarpas arba be tarpo, (xxx) arba xxx, tarpas/bruksnelis arba be ju, xxx, tarpas/bruksnelis arba ne ju, xxxx, pabaiga/
-  fullFilterCoutryCode = /pradzia, (xxx) arba xxx, tarpas/bruksnelis arba be ju, xxx, tarpas/bruksnelis arba ne ju, xxxx, pabaiga/
+  fullFilterWithoutCode = /pradzia, (xxx) arba xxx, tarpas/bruksnelis arba be ju, xxx, tarpas/bruksnelis arba ne ju, xxxx, pabaiga/
 
   P.S. apibreziant simbolius atskirai nuo skaitmenu, tuo paciu automatiskai patikrina, ar yra tinkamas kiekis skaitmenu.
   */
